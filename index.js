@@ -9,7 +9,7 @@ module.exports = function (src) {
     var query = {};
     var last = null;
     var index = 0;
-    
+
     lines.forEach(function (line) {
         var m;
         if (m = re.connected.exec(line)) {
@@ -39,9 +39,9 @@ module.exports = function (src) {
                 rate: parseFloat(m[3])
             };
             query[last].modes.push(r);
-            
-            if (m[4] === '+') query[last]['native'] = r;
-            if (m[5] === '*') query[last].current = r;
+
+            if (m[4] === '+' || m[5] === '+') query[last]['native'] = r;
+            if (m[4] === '*' || m[5] === '*') query[last].current = r;
         }
         else {
             last = null;
